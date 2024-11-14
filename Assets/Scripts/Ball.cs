@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour {
         rb.AddForce(startForce, ForceMode2D.Impulse);
     }
 
-    public void Split() {
+    public bool Split() {
 
         if (nextBall != null) {
             GameObject ball1 = Instantiate(nextBall, rb.position + Vector2.right / 4f, Quaternion.identity);
@@ -27,6 +27,11 @@ public class Ball : MonoBehaviour {
             ball2Script.startForce = new Vector2(-(ball2Script.startForce.x + 0.25f), 6f);
         }
         Destroy(gameObject);
+
+        if (GameObject.FindGameObjectsWithTag("Ball").Length == 1) {
+            return true;
+        }
+        return false;
     }
 
 }
