@@ -7,8 +7,7 @@ public class Grappler : MonoBehaviour {
 
     public Transform player;
     public static Boolean isLaunched;
-
-    public float speed = 26.0f;
+    public static float speed = 26.0f;
 
     void Start() {
         isLaunched = false;
