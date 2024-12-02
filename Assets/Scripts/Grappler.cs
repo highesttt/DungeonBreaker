@@ -8,6 +8,8 @@ public class Grappler : MonoBehaviour {
     public Transform player;
     public static Boolean isLaunched;
     public static float speed = 26.0f;
+    public AudioSource audioSource; // Reference to Audio Source
+    public AudioClip collisionSound;
 
     void Start() {
         isLaunched = false;
@@ -16,6 +18,7 @@ public class Grappler : MonoBehaviour {
     void Update() {
         if (Input.GetButtonDown("Fire1")) {
             isLaunched = true;
+            audioSource.PlayOneShot(collisionSound); // Play collision sound
         }
 
         if (isLaunched) {

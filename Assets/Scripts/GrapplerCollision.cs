@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GrapplerCollision : MonoBehaviour {
+    public AudioSource ballPop;
+    public AudioClip popSound;
     public static IEnumerator WaitForSeconds(int seconds, int scene) {
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(scene);
@@ -16,11 +18,16 @@ public class GrapplerCollision : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Ball")) {
             Ball ball = other.GetComponent<Ball>();
+            ballPop.PlayOneShot(popSound);
             if (ball.Split() == true) {
                 StartCoroutine(WaitForSeconds(2, SceneManager.GetActiveScene().buildIndex + 1));
             }
         }
         if (other.gameObject.CompareTag("Powerup")) {
+            //Add a sound here when laser hits the ball
+
+            
+
             Destroy(other.gameObject);
         }
     }

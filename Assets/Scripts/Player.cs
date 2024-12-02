@@ -7,6 +7,9 @@ public class Player : MonoBehaviour {
 
     public float speed = 3.0f;
     public Rigidbody2D rb;
+
+    public AudioSource death;
+    public AudioClip deathSound;
     private float movement;
 
     void Update() {
@@ -31,7 +34,7 @@ public class Player : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Ball")) {
             Debug.Log("Game Over");
-
+           // audioSource.PlayOneShot(collisionSound); // Play collision sound
             StartCoroutine(GrapplerCollision.WaitForSeconds(0, SceneManager.GetActiveScene().buildIndex));
         }
 
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour {
                 StartCoroutine(GrapplerCollision.WaitForSeconds(1, SceneManager.GetActiveScene().buildIndex + 1));
                 break;
             case "PlayerDies":
+                death.PlayOneShot(deathSound); 
                 StartCoroutine(GrapplerCollision.WaitForSeconds(1, SceneManager.GetActiveScene().buildIndex));
                 break;
             case "SingleSplit":
