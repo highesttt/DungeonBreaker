@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour {
         }
         Destroy(gameObject);
 
-        if (GameObject.FindGameObjectsWithTag("Ball").Length == 1) {
+        if (GameObject.FindGameObjectsWithTag("Ball").Length <= 1) {
             return true;
         }
 
